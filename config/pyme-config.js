@@ -3,7 +3,7 @@
 export const pymeConfig = {
     // 1. Identidad de Marca
     brand: {
-        name: "Magia Mundana",
+        name: "Nombre de tu Empresa",
         tagline: "Eslogan o propuesta de valor corta",
         logoUrl: "/assets/logo.svg",
         favicon: "/favicon.ico",
