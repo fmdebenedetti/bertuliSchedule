@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+:root {
+  /* Fondo principal oscuro pero no negro, para que resalten los neones */
+  --background: #0f172a; /* Slate 900 */
+  --foreground: #f8fafc; /* Slate 50 */
+  
+  /* Gradientes y Acentos - Variables inspiradas en el pyme-config, pero orientadas a neon */
+  --primary: #8b5cf6; /* Violet 500 */
+  --primary-foreground: #ffffff;
+  
+  --secondary: #ec4899; /* Pink 500 */
+  --secondary-foreground: #ffffff;
+
+  --accent: #06b6d4; /* Cyan 500 */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --font-sans: 'Inter', var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  /* Textura de ruido sutil de fondo */
+  background-image: radial-gradient(circle at top right, rgba(139, 92, 246, 0.15), transparent 40%),
+                    radial-gradient(circle at bottom left, rgba(236, 72, 153, 0.15), transparent 40%);
+  background-attachment: fixed;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Animación de fade-in ascendente */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animación de flotar continuo */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Animación de brillo rotatorio para bordes */
+@keyframes border-glow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@utility animate-fade-in-up {
+  animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@utility animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Cristal / Glassmorphism util */
+@utility glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@utility glass-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Gradiente de texto animado */
+@utility text-gradient {
+  background: linear-gradient(to right, var(--primary), var(--secondary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% auto;
+  animation: border-glow 5s linear infinite;
+}
